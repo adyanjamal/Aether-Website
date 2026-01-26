@@ -492,46 +492,159 @@
   </section>
 
   <!-- About Section -->
-  <section class="about">
-  <p>
-    Aether Digital is a digital consulting agency specializing in tailored websites for up-and-coming businesses looking
-    to build a strong, credible online presence.
-  </p>
+  <style>
+  .aether-section {
+    padding: 70px 20px;
+    background: #0b0b0b;
+    color: #ffffff;
+  }
 
-  <div class="pillars">
-    <div class="pillar">
-      <h3>Reliability</h3>
-      <p>
-        We prioritize performance and stability from day one. Every website we deliver is supported by an
-        <strong>AWS-based framework</strong>, providing best-in-class infrastructure, security, and uptime—so your
-        business can operate online with confidence.
-      </p>
+  .aether-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .aether-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .aether-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 850px;
+    margin-bottom: 35px;
+  }
+
+  .aether-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+  }
+
+  .aether-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    padding: 22px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, border 0.2s ease;
+  }
+
+  .aether-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .aether-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .aether-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0;
+  }
+
+  .aether-cta {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  .aether-cta p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.98rem;
+  }
+
+  .aether-button {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    background: #ffffff;
+    color: #0b0b0b;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .aether-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 900px) {
+    .aether-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .aether-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<section class="aether-section" id="about">
+  <div class="aether-container">
+    <h2 class="aether-title">Why Aether Digital</h2>
+
+    <p class="aether-subtitle">
+      Aether Digital is a digital consulting agency specializing in tailored websites for up-and-coming businesses looking
+      to build a strong, credible online presence.
+    </p>
+
+    <div class="aether-grid">
+      <div class="aether-card">
+        <h3>Reliability</h3>
+        <p>
+          We prioritize performance and stability from day one. Every website we deliver is supported by an
+          <strong>AWS-based framework</strong>, providing best-in-class infrastructure, security, and uptime—so your
+          business can operate online with confidence.
+        </p>
+      </div>
+
+      <div class="aether-card">
+        <h3>Affordability</h3>
+        <p>
+          Professional websites shouldn’t come with inflated costs. Our packages start at <strong>$280 per year</strong>,
+          with premium, fully managed solutions available up to <strong>$450 per month</strong> for businesses that want a
+          more advanced and hands-off experience.
+        </p>
+      </div>
+
+      <div class="aether-card">
+        <h3>Efficiency</h3>
+        <p>
+          We value your time and move with purpose. Once an agreement is finalized, we commit to having your website
+          <strong>fully built and ready for use within 10 days</strong>, without sacrificing quality or attention to
+          detail.
+        </p>
+      </div>
     </div>
 
-    <div class="pillar">
-      <h3>Affordability</h3>
-      <p>
-        Professional websites shouldn’t come with inflated costs. Our packages start at <strong>$280 per year</strong>,
-        with premium, fully managed solutions available up to <strong>$450 per month</strong> for businesses that want a
-        more advanced and hands-off experience.
-      </p>
-    </div>
-
-    <div class="pillar">
-      <h3>Efficiency</h3>
-      <p>
-        We value your time and move with purpose. Once an agreement is finalized, we commit to having your website
-        <strong>fully built and ready for use within 10 days</strong>, without sacrificing quality or attention to
-        detail.
-      </p>
+    <div class="aether-cta">
+      <p>For inquiries, please visit our Contact Us page.</p>
+      <a class="aether-button" href="contact.html">Contact Us</a>
     </div>
   </div>
-
-  <p class="cta">
-    For inquiries, please visit our
-    <a href="contact.html">Contact Us</a> page.
-  </p>
 </section>
+
 
   <!-- Mission & Vision -->
   <section class="mission-vision">

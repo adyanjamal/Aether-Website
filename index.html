@@ -6,14 +6,6 @@
 
   <title>Aether Digital Consulting - Custom Online Platforms for Businesses</title>
 
-  <!-- =========================
-       iMessage / Social Preview (Open Graph)
-       IMPORTANT:
-       - Upload og-image.png to your site root so this URL works:
-         https://aetherdc.com/og-image.png
-       - Upload logo.png to your site root so this URL works:
-         https://aetherdc.com/logo.png
-  ========================== -->
   <meta name="description" content="Aether Digital Consulting builds modern, high-performance websites and digital platforms for growing businesses." />
 
   <meta property="og:type" content="website" />
@@ -34,745 +26,153 @@
   <link rel="icon" href="https://aetherdc.com/logo.png" />
   <link rel="apple-touch-icon" href="https://aetherdc.com/logo.png" />
 
-  <style>
-    /* =========================
-       Base + Design Tokens
-    ========================== */
-    :root{
-      --bg: #ffffff;
-      --text: #111;
-      --muted: #5a5a5a;
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 
-      --surface: #ffffff;
-      --surface-2: #f6f7f8;
-
-      --brand-1: #0f172a;  /* deep navy */
-      --brand-2: #1e40af;  /* professional blue */
-
-      --radius: 14px;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-
-      /* Fluid typography + spacing (scales nicely phone -> TV) */
-      --h1: clamp(2rem, 4.2vw, 3.6rem);
-      --h2: clamp(1.6rem, 2.6vw, 2.6rem);
-      --h3: clamp(1.2rem, 1.6vw, 1.8rem);
-      --p: clamp(1rem, 1.1vw, 1.15rem);
-
-      --section-pad: clamp(3.25rem, 5vw, 5.5rem);
-      --gutter: clamp(1rem, 3vw, 2rem);
-      --container: 1200px;
-
-      --nav-h: 72px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: var(--bg);
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* Accessible focus ring */
-    a:focus-visible, button:focus-visible {
-      outline: 3px solid rgba(255,255,255,0.55);
-      outline-offset: 3px;
-      border-radius: 10px;
-    }
-
-    /* =========================
-       Layout Helpers
-    ========================== */
-    .container{
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-
-    section{
-      padding: var(--section-pad) 0;
-    }
-
-    /* =========================
-       Navigation
-    ========================== */
-    nav{
-      background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand-1) 100%);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      backdrop-filter: blur(6px);
-    }
-
-    nav .container{
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .logo{
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: white;
-      text-decoration: none;
-      min-width: 0;
-    }
-
-    .logo-img{
-      height: 34px;
-      width: auto;
-      display: block;
-      flex: 0 0 auto;
-    }
-
-    .logo span{
-      font-size: clamp(1rem, 1.2vw, 1.25rem);
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 56vw;
-    }
-
-    nav ul{
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: clamp(0.8rem, 2vw, 2rem);
-    }
-
-    nav a{
-      color: white;
-      text-decoration: none;
-      opacity: 0.95;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      font-size: clamp(0.95rem, 1vw, 1.05rem);
-      white-space: nowrap;
-    }
-
-    nav a:hover{
-      opacity: 0.8;
-      transform: translateY(-1px);
-    }
-
-    /* =========================
-       Hero
-    ========================== */
-    .hero{
-      padding: calc(var(--section-pad) + 1.5rem) 0;
-      color: white;
-      text-align: center;
-      background:
-        radial-gradient(1000px 400px at 50% -10%, rgba(255,255,255,0.14), transparent 60%),
-        linear-gradient(135deg, var(--brand-1) 0%, #000 100%);
-    }
-
-    .hero h1{
-      font-size: var(--h1);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      letter-spacing: -0.4px;
-    }
-
-    .hero p{
-      font-size: clamp(1.05rem, 1.4vw, 1.35rem);
-      margin: 0 auto 2rem;
-      max-width: 68ch;
-      opacity: 0.95;
-    }
-
-    .cta-button{
-      display: inline-block;
-      background: white;
-      color: black;
-      padding: 0.95rem 2.2rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      font-size: clamp(1rem, 1.1vw, 1.1rem);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
-    .cta-button:hover{
-      transform: translateY(-3px);
-    }
-
-    /* =========================
-       Section Titles
-    ========================== */
-    .section-title{
-      text-align: center;
-      font-size: var(--h2);
-      margin-bottom: clamp(2rem, 3vw, 3rem);
-      color: #060107;
-      padding: 0 var(--gutter);
-    }
-
-    /* =========================
-       Your custom "Why Aether" Section
-    ========================== */
-    .aether-section {
-      padding: 70px 20px;
-      background: #0b0b0b;
-      color: #ffffff;
-    }
-
-    .aether-container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .aether-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: 0.3px;
-    }
-
-    .aether-subtitle {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.78);
-      max-width: 850px;
-      margin-bottom: 35px;
-    }
-
-    .aether-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 25px;
-    }
-
-    .aether-card {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 18px;
-      padding: 22px;
-      backdrop-filter: blur(10px);
-      transition: transform 0.2s ease, border 0.2s ease;
-    }
-
-    .aether-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.18);
-    }
-
-    .aether-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .aether-card p {
-      font-size: 0.98rem;
-      line-height: 1.65;
-      color: rgba(255, 255, 255, 0.78);
-      margin: 0;
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 900px) {
-      .aether-grid { grid-template-columns: 1fr; }
-      .aether-title { font-size: 1.8rem; }
-    }
-
-    /* =========================
-       Mission (FULL-WIDTH single card)
-    ========================== */
-    .mission-vision .cards{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(1.25rem, 2.5vw, 2rem);
-    }
-
-    .card{
-      background: var(--surface);
-      padding: clamp(1.5rem, 2.4vw, 2.5rem);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease;
-      min-height: 100%;
-      width: 100%;
-    }
-
-    .card:hover{
-      transform: translateY(-6px);
-    }
-
-    .card h3{
-      color: #222;
-      font-size: var(--h3);
-      margin-bottom: 0.75rem;
-    }
-
-    .card p{
-      color: var(--muted);
-      font-size: var(--p);
-      line-height: 1.75;
-    }
-
-    /* =========================
-       Services
-    ========================== */
-    .services{
-      background: var(--surface-2);
-    }
-
-    .service-grid{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(1rem, 2.5vw, 2rem);
-    }
-
-    .service-item{
-      background: var(--surface);
-      padding: clamp(1.25rem, 2vw, 2rem);
-      border-radius: var(--radius);
-      text-align: center;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.07);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .service-item:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 14px 35px rgba(0,0,0,0.10);
-    }
-
-    .service-icon{
-      font-size: clamp(2.25rem, 2.8vw, 3rem);
-      margin-bottom: 0.75rem;
-    }
-
-    .service-item h3{
-      color: #222;
-      margin-bottom: 0.6rem;
-      font-size: clamp(1.1rem, 1.2vw, 1.35rem);
-    }
-
-    .service-item p{
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: var(--p);
-    }
-
-    /* =========================
-       Why Choose Us
-    ========================== */
-    .features-list{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(1rem, 2.5vw, 2rem);
-    }
-
-    .feature{
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1rem;
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .feature-icon{
-      color: #111;
-      font-weight: 800;
-      font-size: 1.2rem;
-      flex: 0 0 auto;
-      margin-top: 0.15rem;
-    }
-
-    .feature h4{
-      color: #222;
-      margin-bottom: 0.35rem;
-      font-size: clamp(1.05rem, 1.1vw, 1.15rem);
-    }
-
-    .feature p{
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: var(--p);
-    }
-
-    /* =========================
-       Contact Form (CTA)
-    ========================== */
-    .contact-form{
-      margin-top: 1.5rem;
-      max-width: 820px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-    }
-
-    .contact-grid{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .field{
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .field-full{
-      grid-column: 1 / -1;
-    }
-
-    .field label{
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .field input,
-    .field textarea{
-      width: 100%;
-      padding: 0.9rem 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: white;
-      outline: none;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder{
-      color: rgba(255,255,255,0.55);
-    }
-
-    .field input:focus,
-    .field textarea:focus{
-      border-color: rgba(255,255,255,0.45);
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
-    }
-
-    /* Make form single-column on mobile */
-    @media (max-width: 768px){
-      .contact-grid{
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .cta-section{
-      color: white;
-      text-align: center;
-      padding: calc(var(--section-pad) - 0.75rem) 0;
-      background:
-        radial-gradient(900px 380px at 50% -5%, rgba(255,255,255,0.14), transparent 60%),
-        linear-gradient(135deg, #2a2a2a 0%, #000 100%);
-    }
-
-    .cta-section h2{
-      font-size: var(--h2);
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p{
-      font-size: clamp(1.05rem, 1.2vw, 1.25rem);
-      margin: 0 auto 1.75rem;
-      max-width: 70ch;
-      opacity: 0.95;
-    }
-
-    .cta-button-light{
-      display: inline-block;
-      background: white;
-      color: #111;
-      padding: 0.95rem 2.2rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 800;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      font-size: clamp(1rem, 1.1vw, 1.1rem);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-      border: none;
-      cursor: pointer;
-    }
-
-    .cta-button-light:hover{
-      transform: translateY(-3px);
-    }
-
-    /* =========================
-       Footer
-    ========================== */
-    footer{
-      background: #121212;
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    footer p{
-      opacity: 0.9;
-      font-size: clamp(0.95rem, 1vw, 1.05rem);
-    }
-
-    /* =========================
-       Responsive Breakpoints
-    ========================== */
-    @media (max-width: 980px){
-      .service-grid{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 768px){
-      nav { height: auto; padding: 0.75rem 0; }
-      nav .container{
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-      }
-
-      nav ul{
-        width: 100%;
-        flex-wrap: wrap;
-        gap: 0.75rem 1.25rem;
-      }
-
-      .hero{
-        padding: calc(var(--section-pad) + 1rem) 0;
-      }
-
-      .service-grid{
-        grid-template-columns: 1fr;
-      }
-      .features-list{
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Very large screens (TV / ultra-wide) */
-    @media (min-width: 1600px){
-      :root{ --container: 1400px; }
-    }
-
-    /* Reduced motion accessibility */
-    @media (prefers-reduced-motion: reduce){
-      * { scroll-behavior: auto !important; }
-      .card, .service-item, .cta-button, .cta-button-light, nav a { transition: none !important; }
-    }
-  </style>
 </head>
 
 <body>
-  <!-- Navigation -->
-<nav>
-  <div class="container">
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="Aether Digital Logo" class="logo-img" />
-      <span>Aether Digital Consulting</span>
-    </a>
-
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Why Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-  <!-- Hero Section -->
-  <section class="hero">
+  <nav id="nav">
     <div class="container">
-      <h1>Transform Your Business Online</h1>
-      <p>Custom digital platforms designed to showcase your unique brand and drive customer engagement</p>
-      <a href="#contact" class="cta-button">Get Started Today</a>
+      <a href="index.html" class="logo" aria-label="Aether Digital Consulting home">
+        <img src="logo.png" alt="" class="logo-img" width="36" height="36" />
+        <span class="logo-text">Aether Digital</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact</a></li>
+      </ul>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <style>
-  .aether-section {
-    padding: 70px 20px;
-    background: #0b0b0b;
-    color: #ffffff;
-  }
-
-  .aether-container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .aether-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    letter-spacing: 0.3px;
-  }
-
-  .aether-subtitle {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.78);
-    max-width: 850px;
-    margin-bottom: 35px;
-  }
-
-  .aether-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-top: 25px;
-  }
-
-  .aether-card {
-    background: rgba(10, 44, 233, 0);
-    border: 1px solid rgba(19, 208, 85, 0.1);
-    border-radius: 18px;
-    padding: 22px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.2s ease, border 0.2s ease;
-  }
-
-  .aether-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.18);
-  }
-
-  .aether-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-
-  .aether-card p {
-    font-size: 0.98rem;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.78);
-    margin: 0;
-  }
-
-  .aether-cta {
-    margin-top: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    flex-wrap: wrap;
-    padding: 18px 20px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-  }
-
-  .aether-cta p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.78);
-    font-size: 0.98rem;
-  }
-
-  .aether-button {
-    display: inline-block;
-    padding: 12px 18px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    background: #ffffff;
-    color: #0b0b0b;
-    transition: transform 0.15s ease, opacity 0.15s ease;
-  }
-
-  .aether-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.92;
-  }
-
-  /* Mobile responsive */
-  @media (max-width: 900px) {
-    .aether-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .aether-title {
-      font-size: 1.8rem;
-    }
-  }
-</style>
-
-<section class="aether-section" id="about">
-  <div class="aether-container">
-    <h2 class="aether-title">Why Aether Digital</h2>
-
-      <p class="aether-subtitle">
-        Aether Digital is a digital consulting agency specializing in tailored websites for up-and-coming businesses looking
-        to build a strong, credible online presence.
-      </p>
-
-      <div class="aether-grid">
-        <div class="aether-card">
-          <h3>Reliability</h3>
-          <p>
-            We prioritize performance and stability from day one. Every website we deliver is supported by an
-            <strong>AWS-based framework</strong>, providing best-in-class infrastructure, security, and uptime—so your
-            business can operate online with confidence.
-          </p>
+  </nav>
+  <section class="hero">
+    <div class="hero-inner container">
+      <p class="eyebrow eyebrow--light">Digital Consulting</p>
+      <h1>Elevate your brand with a <em>refined</em> digital presence</h1>
+      <p class="hero-lead">Custom platforms crafted for growing businesses—designed to reflect your identity, engage customers, and scale with confidence.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary">Start a Project</a>
+        <a href="services.html" class="btn btn-ghost">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>10 Days</strong>
+          <span>Delivery commitment</span>
         </div>
-
-        <div class="aether-card">
-          <h3>Affordability</h3>
-          <p>
-            Professional websites shouldn’t come with inflated costs. Our packages start at <strong>$280 per year</strong>,
-            with premium, fully managed solutions available up to <strong>$500 per month</strong> for businesses that want a
-            more advanced and hands-off experience.
-          </p>
+        <div class="hero-stat">
+          <strong>AWS</strong>
+          <span>Enterprise infrastructure</span>
         </div>
-
-        <div class="aether-card">
-          <h3>Efficiency</h3>
-          <p>
-            We value your time and move with purpose. Once an agreement is finalized, we commit to having your website
-            <strong>fully built and ready for use within 10 days</strong>, without sacrificing quality or attention to
-            detail.
-          </p>
+        <div class="hero-stat">
+          <strong>$280+</strong>
+          <span>Annual packages from</span>
         </div>
       </div>
     </div>
   </section>
 
-
- 
-<!-- CTA Section -->
-  <section class="cta-section" id="contact">
+  <section class="aether-section" id="about">
     <div class="container">
-      <h2>Ready to Transform Your Digital Presence?</h2>
-      <p>Let's discuss how Aether Digital can help you build the online platform your business deserves.</p>
-      <a href="tel:+18324348099" class="cta-button-light">Contact Us</a>
+      <div class="aether-header">
+        <p class="eyebrow eyebrow--light">Why Aether</p>
+        <h2 class="aether-title">Built for businesses that demand more</h2>
+        <p class="aether-subtitle">
+          Aether Digital is a consulting agency specializing in tailored websites for up-and-coming businesses
+          looking to establish a credible, polished online presence.
+        </p>
+      </div>
+      <div class="aether-grid">
+        <article class="aether-card">
+          <div class="aether-card-num">01</div>
+          <h3>Reliability</h3>
+          <p>
+            Performance and stability from day one. Every site runs on an
+            <strong>AWS-based framework</strong>â€”enterprise infrastructure, security, and uptime so you operate online with confidence.
+          </p>
+        </article>
+        <article class="aether-card">
+          <div class="aether-card-num">02</div>
+          <h3>Affordability</h3>
+          <p>
+            Professional quality without inflated costs. Packages from <strong>$280 per year</strong>,
+            with premium managed solutions up to <strong>$500 per month</strong> for a fully hands-off experience.
+          </p>
+        </article>
+        <article class="aether-card">
+          <div class="aether-card-num">03</div>
+          <h3>Efficiency</h3>
+          <p>
+            We respect your timeline. Once terms are agreed, your website is
+            <strong>built and ready within 10 days</strong>—without compromising craft or attention to detail.
+          </p>
+        </article>
+      </div>
     </div>
   </section>
- 
-  <!-- Footer -->
+
+  <section class="work-showcase">
+    <div class="container work-compact">
+      <p class="eyebrow" style="text-align:center;display:block;">Featured Work</p>
+      <h2 class="section-title section-title--center">See what we build</h2>
+      <p class="section-lead">A recent launch for a Houston automotive business—custom design, inventory, and lead capture in one platform.</p>
+
+      <article class="work-featured">
+        <a href="https://accentautohtx.com" class="work-preview-link" target="_blank" rel="noopener noreferrer">
+          <div class="work-browser-bar" aria-hidden="true">
+            <span class="work-browser-dot"></span>
+            <span class="work-browser-dot"></span>
+            <span class="work-browser-dot"></span>
+            <span class="work-browser-url">accentautohtx.com</span>
+          </div>
+          <div class="work-preview-frame">
+            <p class="work-preview-brand">Accent Auto</p>
+            <p class="work-preview-tagline">Quality used cars · Inspections · Title transfer</p>
+            <span class="work-preview-cta">View live site →</span>
+          </div>
+        </a>
+        <div class="work-content">
+          <p class="work-client">Accent Auto HTX</p>
+          <h3>Built for a Houston dealership</h3>
+          <p>Inventory browsing, sell-your-car flows, and service pages—everything their customers need before they visit the lot.</p>
+          <div class="hero-actions" style="justify-content:flex-start;margin-top:0;">
+            <a href="portfolio.html" class="btn btn-primary">View Case Study</a>
+            <a href="https://accentautohtx.com" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Live Site</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <p class="eyebrow eyebrow--light" style="text-align:center;display:block;">Get in Touch</p>
+      <h2 class="section-title section-title--center">Ready to elevate your digital presence?</h2>
+      <p class="section-lead">Let's discuss how Aether Digital can help you build the online platform your business deserves.</p>
+      <div class="hero-actions" style="justify-content:center;margin-top:1.5rem;">
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="tel:+18324348099" class="btn btn-ghost">Call (832) 434-8099</a>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container">
-      <p>&copy; 2026 Aether Digital Consulting. All rights reserved.</p>
-      <p>Transforming businesses, one digital platform at a time.</p>
+      <div>
+        <p class="footer-brand">Aether Digital Consulting</p>
+        <p class="footer-tagline">Transforming businesses, one platform at a time.</p>
+      </div>
+      <p class="footer-copy">&copy; 2026 Aether Digital Consulting. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="nav.js"></script>
 </body>
 </html>
- 
-  
-
- 

@@ -1,538 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Why Us | Aether Digital Consulting</title>
-
-<style>
-    /* =========================
-       Base + Design Tokens
-    ========================== */
-    :root{
-      --bg: #ffffff;
-      --text: #111;
-      --muted: #5a5a5a;
-
-      --surface: #ffffff;
-      --surface-2: #f6f7f8;
-
-      --brand-1: #0f172a;  /* deep navy */
---brand-2: #1e40af;  /* professional blue */
-
-
-      --radius: 14px;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-
-      /* Fluid typography + spacing (scales nicely phone -> TV) */
-      --h1: clamp(2rem, 4.2vw, 3.6rem);
-      --h2: clamp(1.6rem, 2.6vw, 2.6rem);
-      --h3: clamp(1.2rem, 1.6vw, 1.8rem);
-      --p: clamp(1rem, 1.1vw, 1.15rem);
-
-      --section-pad: clamp(3.25rem, 5vw, 5.5rem);
-      --gutter: clamp(1rem, 3vw, 2rem);
-      --container: 1200px;
-
-      --nav-h: 72px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: var(--bg);
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* Accessible focus ring */
-    a:focus-visible, button:focus-visible {
-      outline: 3px solid rgba(255,255,255,0.55);
-      outline-offset: 3px;
-      border-radius: 10px;
-    }
-
-    /* =========================
-       Layout Helpers
-    ========================== */
-    .container{
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-
-    section{
-      padding: var(--section-pad) 0;
-    }
-
-    /* =========================
-       Navigation
-    ========================== */
-    nav{
-      background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand-1) 100%);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      backdrop-filter: blur(6px);
-    }
-
-    nav .container{
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .logo{
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: white;
-      text-decoration: none;
-      min-width: 0;
-    }
-
-    .logo-img{
-      height: 34px;
-      width: auto;
-      display: block;
-      flex: 0 0 auto;
-    }
-
-    .logo span{
-      font-size: clamp(1rem, 1.2vw, 1.25rem);
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 56vw; /* prevents overflow on small screens */
-    }
-
-    nav ul{
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: clamp(0.8rem, 2vw, 2rem);
-    }
-
-    nav a{
-      color: white;
-      text-decoration: none;
-      opacity: 0.95;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      font-size: clamp(0.95rem, 1vw, 1.05rem);
-      white-space: nowrap;
-    }
-
-    nav a:hover{
-      opacity: 0.8;
-      transform: translateY(-1px);
-    }
-
-    /* =========================
-       Hero
-    ========================== */
-    .hero{
-      padding: calc(var(--section-pad) + 1.5rem) 0;
-      color: white;
-      text-align: center;
-      background:
-        radial-gradient(1000px 400px at 50% -10%, rgba(255,255,255,0.14), transparent 60%),
-        linear-gradient(135deg, var(--brand-1) 0%, #000 100%);
-    }
-
-    .hero h1{
-      font-size: var(--h1);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      letter-spacing: -0.4px;
-    }
-
-    .hero p{
-      font-size: clamp(1.05rem, 1.4vw, 1.35rem);
-      margin: 0 auto 2rem;
-      max-width: 68ch;
-      opacity: 0.95;
-    }
-
-    .cta-button{
-      display: inline-block;
-      background: white;
-      color: black;
-      padding: 0.95rem 2.2rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      font-size: clamp(1rem, 1.1vw, 1.1rem);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
-    .cta-button:hover{
-      transform: translateY(-3px);
-    }
-
-    /* =========================
-       About
-    ========================== */
-    .about{
-      background: var(--surface-2);
-    }
-
-    .about .container{
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: clamp(1.5rem, 3vw, 3rem);
-      align-items: center;
-    }
-
-    .about h2{
-      font-size: var(--h2);
-      margin-bottom: 1rem;
-      color: #222;
-    }
-
-    .about p{
-      font-size: var(--p);
-      margin-bottom: 1rem;
-      color: var(--muted);
-      line-height: 1.85;
-      max-width: 70ch;
-    }
-
-    .about-image{
-      width: 100%;
-      aspect-ratio: 4 / 3; /* keeps consistent shape across devices */
-      border-radius: var(--radius);
-      background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url("about.jpeg") center top / cover no-repeat;
-      box-shadow: var(--shadow);
-    }
-
-    /* =========================
-       Section Titles
-    ========================== */
-    .section-title{
-      text-align: center;
-      font-size: var(--h2);
-      margin-bottom: clamp(2rem, 3vw, 3rem);
-      color: #060107;
-      padding: 0 var(--gutter);
-    }
-
-    /* =========================
-       Mission & Vision
-    ========================== */
-    .mission-vision .cards{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(1.25rem, 2.5vw, 2rem);
-    }
-
-    .card{
-      background: var(--surface);
-      padding: clamp(1.5rem, 2.4vw, 2.5rem);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease;
-      min-height: 100%;
-    }
-
-    .card:hover{
-      transform: translateY(-6px);
-    }
-
-    .card h3{
-      color: #222;
-      font-size: var(--h3);
-      margin-bottom: 0.75rem;
-    }
-
-    .card p{
-      color: var(--muted);
-      font-size: var(--p);
-      line-height: 1.75;
-    }
-
-    /* =========================
-       Services
-    ========================== */
-    .services{
-      background: var(--surface-2);
-    }
-
-    .service-grid{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(1rem, 2.5vw, 2rem);
-    }
-
-    .service-item{
-      background: var(--surface);
-      padding: clamp(1.25rem, 2vw, 2rem);
-      border-radius: var(--radius);
-      text-align: center;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.07);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .service-item:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 14px 35px rgba(0,0,0,0.10);
-    }
-
-    .service-icon{
-      font-size: clamp(2.25rem, 2.8vw, 3rem);
-      margin-bottom: 0.75rem;
-    }
-
-    .service-item h3{
-      color: #222;
-      margin-bottom: 0.6rem;
-      font-size: clamp(1.1rem, 1.2vw, 1.35rem);
-    }
-
-    .service-item p{
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: var(--p);
-    }
-
-    /* =========================
-       Why Choose Us
-    ========================== */
-    .features-list{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(1rem, 2.5vw, 2rem);
-    }
-
-    .feature{
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1rem;
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .feature-icon{
-      color: #111;
-      font-weight: 800;
-      font-size: 1.2rem;
-      flex: 0 0 auto;
-      margin-top: 0.15rem;
-    }
-
-    .feature h4{
-      color: #222;
-      margin-bottom: 0.35rem;
-      font-size: clamp(1.05rem, 1.1vw, 1.15rem);
-    }
-
-    .feature p{
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: var(--p);
-    }
-
-    /* =========================
-       CTA
-    ========================== */
-    .cta-section{
-      color: white;
-      text-align: center;
-      padding: calc(var(--section-pad) - 0.75rem) 0;
-      background:
-        radial-gradient(900px 380px at 50% -5%, rgba(255,255,255,0.14), transparent 60%),
-        linear-gradient(135deg, #2a2a2a 0%, #000 100%);
-    }
-
-    .cta-section h2{
-      font-size: var(--h2);
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p{
-      font-size: clamp(1.05rem, 1.2vw, 1.25rem);
-      margin: 0 auto 1.75rem;
-      max-width: 70ch;
-      opacity: 0.95;
-    }
-
-    .cta-button-light{
-      display: inline-block;
-      background: white;
-      color: #111;
-      padding: 0.95rem 2.2rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 800;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      font-size: clamp(1rem, 1.1vw, 1.1rem);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
-
-    .cta-button-light:hover{
-      transform: translateY(-3px);
-    }
-
-    /* =========================
-       Footer
-    ========================== */
-    footer{
-      background: #121212;
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    footer p{
-      opacity: 0.9;
-      font-size: clamp(0.95rem, 1vw, 1.05rem);
-    }
-
-    /* =========================
-       Responsive Breakpoints
-       (phone, tablet, small laptop)
-    ========================== */
-    @media (max-width: 980px){
-      .about .container{
-        grid-template-columns: 1fr;
-      }
-      .about-image{
-        aspect-ratio: 16 / 9;
-      }
-      .service-grid{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 768px){
-      nav { height: auto; padding: 0.75rem 0; }
-      nav .container{
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-      }
-
-      nav ul{
-        width: 100%;
-        flex-wrap: wrap;
-        gap: 0.75rem 1.25rem;
-      }
-
-      .hero{
-        padding: calc(var(--section-pad) + 1rem) 0;
-      }
-
-      .mission-vision .cards{
-        grid-template-columns: 1fr;
-      }
-      .service-grid{
-        grid-template-columns: 1fr;
-      }
-      .features-list{
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Very large screens (TV / ultra-wide) */
-    @media (min-width: 1600px){
-      :root{
-        --container: 1400px;
-      }
-    }
-
-    /* Reduced motion accessibility */
-    @media (prefers-reduced-motion: reduce){
-      * { scroll-behavior: auto !important; }
-      .card, .service-item, .cta-button, .cta-button-light, nav a { transition: none !important; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Work | Aether Digital Consulting</title>
+  <meta name="description" content="See Aether Digital's work—including Accent Auto HTX, a custom automotive platform for inventory, inspections, and title services in Houston." />
+  <link rel="icon" href="https://aetherdc.com/logo.png" />
+  <link rel="apple-touch-icon" href="https://aetherdc.com/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-<nav>
-  <div class="container">
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="Aether Digital Logo" class="logo-img" />
-      <span>Aether Digital Consulting</span>
-    </a>
-
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Why Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-<!-- Why Choose Us -->
-  <section class="why-us" id="why">
+  <nav id="nav">
     <div class="container">
-      <h2 class="section-title">Why Choose Aether Digital?</h2>
+      <a href="index.html" class="logo" aria-label="Aether Digital Consulting home">
+        <img src="logo.png" alt="" class="logo-img" width="36" height="36" />
+        <span class="logo-text">Aether Digital</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html" class="is-active">Work</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="hero-inner container">
+      <p class="eyebrow eyebrow--light">Our Work</p>
+      <h1>Platforms built to <em>perform</em></h1>
+      <p class="hero-lead">Real businesses, real results—custom websites designed to convert visitors into customers.</p>
+    </div>
+  </section>
+
+  <section class="work-showcase" id="work">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center;display:block;">Featured Project</p>
+      <h2 class="section-title section-title--center">Accent Auto HTX</h2>
+      <p class="section-lead">A full-service automotive platform for a Houston dealership—inventory, lead capture, and customer workflows in one place.</p>
+
+      <article class="work-featured">
+        <a href="https://accentautohtx.com" class="work-preview-link" target="_blank" rel="noopener noreferrer">
+          <div class="work-browser-bar" aria-hidden="true">
+            <span class="work-browser-dot"></span>
+            <span class="work-browser-dot"></span>
+            <span class="work-browser-dot"></span>
+            <span class="work-browser-url">accentautohtx.com</span>
+          </div>
+          <div class="work-preview-frame">
+            <p class="work-preview-brand">Accent Auto</p>
+            <p class="work-preview-tagline">Quality used cars · Texas inspections · Title transfer</p>
+            <span class="work-preview-cta">View live site →</span>
+          </div>
+        </a>
+
+        <div class="work-content">
+          <p class="work-client">Automotive · Houston, TX</p>
+          <h3>One shop, one digital home</h3>
+          <p>
+            Accent Auto needed more than a brochure site—they needed customers to browse inventory online,
+            request inspections, sell vehicles, and understand title services before walking in. We built a
+            polished, mobile-first experience that reflects the quality of their lot and keeps leads flowing.
+          </p>
+          <ul class="work-highlights">
+            <li>Live vehicle inventory with available, sold, and full-list views</li>
+            <li>Dedicated flows for buying, selling, state inspections, and title transfer</li>
+            <li>Clear service pages and step-by-step “sell my car” guidance</li>
+            <li>Professional brand presence built for local Houston customers</li>
+          </ul>
+          <div class="work-tags">
+            <span class="work-tag">Custom Design</span>
+            <span class="work-tag">Inventory</span>
+            <span class="work-tag">Lead Forms</span>
+            <span class="work-tag">Mobile-First</span>
+          </div>
+          <div class="hero-actions" style="justify-content:flex-start;margin-top:0;">
+            <a href="https://accentautohtx.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit accentautohtx.com</a>
+            <a href="contact.html" class="btn btn-outline">Start Your Project</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="why-us">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center;display:block;">The Aether Difference</p>
+      <h2 class="section-title section-title--center">Why Choose Aether Digital</h2>
+      <p class="section-lead">The same care behind Accent Auto HTX goes into every project we take on.</p>
+
       <div class="features-list">
         <div class="feature">
-          <div class="feature-icon">✓</div>
+          <div class="feature-icon" aria-hidden="true">&#10003;</div>
           <div>
             <h4>Specialized Expertise</h4>
-            <p>We specialize exclusively in restaurants and retail, understanding your unique challenges and opportunities.</p>
+            <p>Focused on restaurants, retail, and local service businesses—we understand your market and your customers.</p>
           </div>
         </div>
         <div class="feature">
-          <div class="feature-icon">✓</div>
+          <div class="feature-icon" aria-hidden="true">&#10003;</div>
           <div>
             <h4>100% Customization</h4>
             <p>No templates. Every solution is built from scratch to match your brand, vision, and business model.</p>
           </div>
         </div>
         <div class="feature">
-          <div class="feature-icon">✓</div>
+          <div class="feature-icon" aria-hidden="true">&#10003;</div>
           <div>
             <h4>Collaborative Approach</h4>
             <p>We work as an extension of your team, keeping you involved at every step of the process.</p>
           </div>
         </div>
         <div class="feature">
-          <div class="feature-icon">✓</div>
+          <div class="feature-icon" aria-hidden="true">&#10003;</div>
           <div>
             <h4>Scalable Solutions</h4>
-            <p>Start small and grow with us. Our platforms grow with your business, no expensive rebuilds needed.</p>
+            <p>Start small and grow with us. Our platforms evolve with your business—no expensive rebuilds.</p>
           </div>
         </div>
         <div class="feature">
-          <div class="feature-icon">✓</div>
+          <div class="feature-icon" aria-hidden="true">&#10003;</div>
           <div>
             <h4>Ongoing Support</h4>
-            <p>Beyond launch, we're here with training, updates, and strategic guidance to keep you ahead.</p>
+            <p>Beyond launch: training, updates, and strategic guidance to keep you ahead of the curve.</p>
           </div>
         </div>
         <div class="feature">
-          <div class="feature-icon">✓</div>
+          <div class="feature-icon" aria-hidden="true">&#10003;</div>
           <div>
             <h4>Proven Results</h4>
-            <p>We focus on measurable outcomes—more customers, higher conversion rates, better revenue.</p>
+            <p>Measurable outcomes—more customers, higher conversion, and stronger revenue growth.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="cta-section">
+    <div class="container">
+      <p class="eyebrow eyebrow--light" style="text-align:center;display:block;">Get in Touch</p>
+      <h2 class="section-title section-title--center">Ready for a site like this?</h2>
+      <p class="section-lead">Tell us about your business—we'll show you what's possible.</p>
+      <div class="hero-actions" style="justify-content:center;margin-top:0;">
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="services.html" class="btn btn-ghost">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div>
+        <p class="footer-brand">Aether Digital Consulting</p>
+        <p class="footer-tagline">Transforming businesses, one platform at a time.</p>
+      </div>
+      <p class="footer-copy">&copy; 2026 Aether Digital Consulting. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
 </body>
 </html>
